@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e26e12f-8244-4216-8cf7-88e47e57098b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/ChessMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/HelloController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/Square.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/BishopFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/BlackCell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/Figure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/HorseFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/KingFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/PawnFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/QueenFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/RookFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/WhiteCell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/BB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/BW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/HB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/HW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/KB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/KW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/PB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/PW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/QB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/QW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/RB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/RW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/chess/onlinechessfx/chess-view.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2C1WaIi85BmcD8eUfUTWmiVniDs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "C:/Users/booqi/IdeaProjects/OnlineChessFX/src/main/java/ru/chess/onlinechessfx/figures"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\booqi\IdeaProjects\OnlineChessFX\src\main\java\ru\chess\onlinechessfx\figures" />
+      <recent name="C:\Users\booqi\IdeaProjects\OnlineChessFX\src\main\java\ru\chess\onlinechessfx" />
+      <recent name="C:\Users\booqi\IdeaProjects\OnlineChessFX\src\main\java\ru\chess\onlinechessfx\game" />
+      <recent name="C:\Users\booqi\IdeaProjects\OnlineChessFX\src\main\java\game" />
+      <recent name="C:\Users\booqi\IdeaProjects\OnlineChessFX\src\main\java\figures" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\booqi\IdeaProjects\OnlineChessFX\src\main\java\game" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.chess.onlinechessfx" />
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ChessMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.chess.onlinechessfx.ChessMain" />
+      <module name="OnlineChessFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.chess.onlinechessfx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ChessMain" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e26e12f-8244-4216-8cf7-88e47e57098b" name="Changes" comment="" />
+      <created>1657970639068</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657970639068</updated>
+      <workItem from="1657970640440" duration="15684000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
