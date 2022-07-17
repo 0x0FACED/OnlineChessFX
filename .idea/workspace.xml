@@ -4,47 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e26e12f-8244-4216-8cf7-88e47e57098b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/ChessMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/Square.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/BishopFigure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/BlackCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/Figure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/HorseFigure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/KingFigure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/PawnFigure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/QueenFigure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/RookFigure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/WhiteCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/BB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/BW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/HB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/HW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/KB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/KW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/PB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/PW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/QB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/QW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/RB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/images/RW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/chess/onlinechessfx/chess-view.fxml" afterDir="false" />
+    <list default="true" id="6e26e12f-8244-4216-8cf7-88e47e57098b" name="Changes" comment="First Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/ChessMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/ChessMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/chess-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/Figure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/Figure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/PawnFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/PawnFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/chess/onlinechessfx/chess-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ru/chess/onlinechessfx/chess-view.fxml" afterDir="false" />
+    </list>
+    <list id="bd5fae17-e680-431e-a33d-1024cd007165" name="Changes by vovai" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/PawnFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/PawnFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +36,69 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="4" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="6" end1="6" start2="7" end2="8" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="7" end1="7" start2="9" end2="10" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="32" end1="32" start2="35" end2="39" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="36" end1="37" start2="43" end2="44" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="39" end1="40" start2="46" end2="47" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="46" end1="47" start2="53" end2="53" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="49" end1="101" start2="55" end2="55" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="102" end1="103" start2="56" end2="58" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="106" end1="107" start2="61" end2="72" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="108" end1="111" start2="73" end2="83" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="114" end1="115" start2="86" end2="86" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="116" end1="117" start2="87" end2="88" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="118" end1="119" start2="89" end2="90" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="121" end1="122" start2="92" end2="121" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="123" end1="125" start2="122" end2="122" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="127" end1="135" start2="124" end2="124" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="136" end1="146" start2="125" end2="126" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="149" end1="150" start2="129" end2="160" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="158" end1="158" start2="168" end2="179" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="164" end1="167" start2="185" end2="188" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="168" end1="169" start2="189" end2="189" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="174" end1="175" start2="194" end2="201" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="177" end1="178" start2="203" end2="205" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="190" end1="190" start2="217" end2="221" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="201" end1="201" start2="232" end2="233" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="202" end1="202" start2="234" end2="239" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="203" end1="203" start2="240" end2="241" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="205" end1="205" start2="243" end2="250" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="304" end1="304" start2="349" end2="350" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="320" end1="321" start2="366" end2="366" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="323" end1="323" start2="368" end2="369" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="349" end1="351" start2="395" end2="395" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="352" end1="365" start2="396" end2="410" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="366" end1="391" start2="411" end2="436" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="392" end1="401" start2="437" end2="447" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="469" end1="470" start2="515" end2="515" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="472" end1="472" start2="517" end2="570" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="588" end1="589" start2="686" end2="686" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/figures/PawnFigure.java">
+      <ranges>
+        <range start1="8" end1="8" start2="8" end2="10" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="17" end1="19" start2="19" end2="21" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="21" end1="22" start2="23" end2="26" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="27" end1="29" start2="31" end2="33" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="31" end1="32" start2="35" end2="38" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="38" end1="39" start2="44" end2="45" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="40" end1="40" start2="46" end2="48" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="44" end1="45" start2="52" end2="53" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="46" end1="46" start2="54" end2="56" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="50" end1="51" start2="60" end2="61" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="53" end1="53" start2="63" end2="65" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="58" end1="59" start2="70" end2="71" changelist="bd5fae17-e680-431e-a33d-1024cd007165" />
+        <range start1="61" end1="61" start2="73" end2="75" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+        <range start1="64" end1="65" start2="78" end2="78" changelist="6e26e12f-8244-4216-8cf7-88e47e57098b" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -77,7 +116,10 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Users/booqi/IdeaProjects/OnlineChessFX/src/main/java/ru/chess/onlinechessfx/figures"
+    "last_opened_file_path": "C:/java_projects/Chess---JavaFX",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.45057473"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -124,8 +166,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657970639068</updated>
-      <workItem from="1657970640440" duration="15684000" />
+      <workItem from="1657970640440" duration="16728000" />
+      <workItem from="1658048195287" duration="24630000" />
     </task>
+    <task id="LOCAL-00001" summary="First Commit">
+      <created>1657986790719</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657986790719</updated>
+    </task>
+    <task id="LOCAL-00002" summary="First Commit">
+      <created>1657986798655</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657986798655</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,13 +200,26 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java</url>
-          <line>128</line>
-          <option name="timeStamp" value="6" />
+          <line>554</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/chess/onlinechessfx/game/ChessGame.java</url>
+          <line>159</line>
+          <properties class="ru.chess.onlinechessfx.game.ChessGame" method="move">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

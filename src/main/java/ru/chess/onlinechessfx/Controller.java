@@ -11,8 +11,6 @@ public class Controller {
 
     public void initialize(){
 
-        // Themes are Coral, Dusk, Wheat, Marine, Emerald, Sandcastle
-
         ChessGame game = new ChessGame(chessBoard);
 
     }

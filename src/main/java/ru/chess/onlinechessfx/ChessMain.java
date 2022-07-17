@@ -6,11 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class ChessMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("chess-view.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("chess-view.fxml")));
         primaryStage.setTitle("Chess");
         primaryStage.setScene(new Scene(root, 800, 800));
         primaryStage.setResizable(false);

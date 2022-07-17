@@ -12,8 +12,4 @@
           xmlns="http://javafx.com/javafx/16"
           xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="ru.chess.onlinechessfx.Controller">
-    <columnConstraints>
-    </columnConstraints>
-    <rowConstraints>
-    </rowConstraints>
 </GridPane>
