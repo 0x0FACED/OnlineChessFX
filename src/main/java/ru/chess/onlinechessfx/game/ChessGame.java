@@ -1,10 +1,13 @@
 package ru.chess.onlinechessfx.game;
 
 import javafx.event.EventTarget;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import ru.chess.onlinechessfx.Square;
 import ru.chess.onlinechessfx.figures.*;
+import javafx.scene.control.Alert;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 
@@ -30,6 +33,10 @@ public class ChessGame {
 
     private int blackKingX;
     private int blackKingY;
+
+    private int takingOnPassX;
+    private int takingOnPassY;
+
 
     public ChessGame(GridPane board) {
         this.board = new Board(board);
@@ -62,16 +69,23 @@ public class ChessGame {
             Square square = null;
 
             // Clicked on square
-            if(target.toString().equals("Square")) {
-                Square square = (Square) target;
-                if (square.occupied && !figureSelected){ //empty fal
+            if (target.toString().equals("Square") || target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B' ) {
+                if(target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B'){
+                    Figure newFigure = (Figure) target;
+                    square = (Square) newFigure.getParent();
+                }
+                else if(target.toString().equals("Square")){
+                    square = (Square) target;
+                }
+                
+                if (square.occupied && !figureSelected) { //empty fal
                     selectedX = square.getX();
                     selectedY = square.getY();
                     figureSelected = true;
 
-                    selectedFigure = (Figure)square.getChildren().get(0);
+                    selectedFigure = (Figure) square.getChildren().get(0);
 
-                } else if (figureSelected){
+                } else if (figureSelected) {
                     int secondX = square.getX();
                     int secondY = square.getY();
                     if ((!player && !board.getElement(selectedY, selectedX).getColor()) || (player && board.getElement(selectedY, selectedX).getColor())) {
@@ -201,6 +215,10 @@ public class ChessGame {
                 board.getElement(x_2, y_2).setFigureY(y_2);
 
                 board.getElement(x_2, y_2).setHasMoved(true);
+                if(board.getElement(x_2, y_2).getName().charAt(0) != 'P'){
+                    PawnFigure.passX = -1;
+                    PawnFigure.passY = -1;
+                }
                 return true;
             } else {
                 System.out.println("Error\n");
@@ -223,6 +241,13 @@ public class ChessGame {
 
         if (checkKing(true, this.board, blackKingX, blackKingY)) {
             System.out.println("Check for black");
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText(null);
+            alert.setContentText("Sosi huy, tebe shah, Black!");
+
+            alert.showAndWait();
         }
 
         if (checkWhite) {
@@ -487,6 +512,59 @@ public class ChessGame {
                     System.out.println("Enter number of the shape");
                 }
             }
+        }
+        return false;
+    }
+
+    public boolean pawnUpdateMenu(int x_1, int y_1, int x_2, int y_2, Square square){
+
+        if(board.getElement(x_1, y_1).getName().charAt(0) == 'P'
+                && (y_1 == y_2 || y_1 - y_2 == 1 || y_1 - y_2 == -1)
+                && ((x_1 == 6 && x_2 == 7) || x_1 == 1 && x_2 == 0)) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog with Custom Actions");
+            alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
+            alert.setContentText("Choose your option.");
+
+            ButtonType buttonTypeQueen = new ButtonType("Queen");
+            ButtonType buttonTypeRook = new ButtonType("Rook");
+            ButtonType buttonTypeHorse = new ButtonType("Horse");
+            ButtonType buttonTypeBishop = new ButtonType("Bishop");
+
+            alert.getButtonTypes().setAll(buttonTypeQueen, buttonTypeRook, buttonTypeHorse, buttonTypeBishop);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            String col;
+            if (player) {
+                col = "B";
+            } else {
+                col = "W";
+            }
+
+            Figure newFigure = null;
+            if (result.get() == buttonTypeQueen) {
+                newFigure = new QueenFigure(y_2, x_2, player, "Q" + col);
+            } else if (result.get() == buttonTypeRook) {
+                newFigure = new RookFigure(y_2, x_2, player, "R" + col);
+            } else if (result.get() == buttonTypeHorse) {
+                newFigure = new HorseFigure(y_2, x_2, player, "H" + col);
+            } else {
+                newFigure = new BishopFigure(y_2, x_2, player, "B" + col);
+            }
+
+            if(checkForEmptyCell(x_2, y_2)){
+                killFigure(square);
+            }else {
+                moveFigure(square);
+            }
+            square.getChildren().remove(0);
+
+            square.getChildren().add(newFigure);
+            board.setElement(x_2, y_2, newFigure);
+            initNullCell(x_1, y_1);
+            System.out.println(board.getSquare(y_1, x_1).getChildren());
+
+            return true;
         }
         return false;
     }

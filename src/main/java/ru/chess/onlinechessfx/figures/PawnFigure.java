@@ -58,7 +58,7 @@ public class PawnFigure extends Figure {
         }
 
         //white eat
-        if (x_2 - x_1 == 1 && !(this.getColor()) && ((y_2 - y_1 == 1) || (y_1 - y_2 == 1))) {
+        if (x_1 - x_2 == 1 && !(this.getColor()) && ((y_2 - y_1 == 1) || (y_1 - y_2 == 1))) {
             if (!(board.getElement(x_2, y_2).getName().equals("11")) && !(board.getElement(x_2, y_2).getName().equals("00"))) {
                 setHasMoved(true);
                 passX = -1;
@@ -68,7 +68,7 @@ public class PawnFigure extends Figure {
         }
 
         //black eat
-        if (x_1 - x_2 == 1 && this.getColor() && ((y_2 - y_1 == 1) || (y_1 - y_2 == 1))) {
+        if (x_2 - x_1 == 1 && this.getColor() && ((y_2 - y_1 == 1) || (y_1 - y_2 == 1))) {
             if (!(board.getElement(x_2, y_2).getName().equals("11")) && !(board.getElement(x_2, y_2).getName().equals("00"))) {
                 setHasMoved(true);
                 passX = -1;
