@@ -24,8 +24,8 @@ public class Figure extends ImageView {
 
     private boolean doubleStep;
 
-    public Boolean isDoubleStep() {
-        return doubleStep;
+    public boolean isDoubleStep() {
+        return this.doubleStep;
     }
 
     public void setDoubleStep(boolean doubleStep) {
@@ -57,7 +57,7 @@ public class Figure extends ImageView {
     }
 
     public boolean isHasMoved() {
-        return hasMoved;
+        return this.hasMoved;
     }
 
     public void setHasMoved(boolean hasMoved) {

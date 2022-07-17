@@ -55,8 +55,5 @@ public class Square extends StackPane {
         this.name = name;
     }
 
-
-
-
 }
 

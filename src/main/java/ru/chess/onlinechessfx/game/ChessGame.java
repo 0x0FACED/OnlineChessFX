@@ -1,10 +1,13 @@
 package ru.chess.onlinechessfx.game;
 
 import javafx.event.EventTarget;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import ru.chess.onlinechessfx.Square;
 import ru.chess.onlinechessfx.figures.*;
+import javafx.scene.control.Alert;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 
@@ -31,123 +34,130 @@ public class ChessGame {
     private int blackKingX;
     private int blackKingY;
 
+    private int takingOnPassX;
+    private int takingOnPassY;
+
+
     public ChessGame(GridPane board) {
         this.board = new Board(board);
         this.player = false;
-        whiteKingX = 0;
+        whiteKingX = 7;
         whiteKingY = 4;
 
-        blackKingX = 7;
+        blackKingX = 0;
         blackKingY = 4;
 
         checkBlack = false;
         checkWhite = false;
         matWhite = false;
         matBlack = false;
-        /*startGame();*/
         addEventHandlers(board);
     }
 
-    /*public void startGame() {
-        board.printBoard();
+    private void addEventHandlers(GridPane chessBoard) {
+        System.out.println("White Step");
+        chessBoard.setOnMouseClicked(event -> {
+            EventTarget target = event.getTarget();
 
-        while (true) {
             if (!player) {
                 System.out.println("White step");
             }
             if (player) {
                 System.out.println("Black step");
             }
-            System.out.println("Enter the coordinates: ");
-            Scanner sc = new Scanner(System.in);
-            int x_1 = sc.nextInt();
-            int y_1 = sc.nextInt();
-            int x_2 = sc.nextInt();
-            int y_2 = sc.nextInt();
 
-            if ((!player && !board.getElement(x_1, y_1).getColor()) || (player && board.getElement(x_1, y_1).getColor())) {
-                if (!move(x_1, y_1, x_2, y_2)) {
-                    System.out.println("You can't do this step");
-                } else {
-                    player = !player;
-                    board.printBoard();
-                }
-            } else if (player && !board.getElement(x_1, y_1).getColor()) {
-                System.out.println("It's black turn now");
-            } else if (!player && board.getElement(x_1, y_1).getColor()) {
-                System.out.println("It's white turn now");
-            }
-
-            matAndCheck();
-            if (!player && checkBlack) {
-                matBlack = true;
-            }
-            if (player && checkWhite) {
-                matWhite = true;
-            }
-
-            if (matWhite) {
-                System.out.println("Black wins");
-                break;
-            }
-            if (matBlack) {
-                System.out.println("White wins");
-                break;
-            }
-
-            checkWhite = false;
-            checkBlack = false;
-        }
-    }*/
-
-    private void addEventHandlers(GridPane chessBoard){
-        chessBoard.setOnMouseClicked(event -> {
-            EventTarget target = event.getTarget();
-
+            Square square = null;
 
             // Clicked on square
-            if(target.toString().equals("Square")) {
-                Square square = (Square) target;
-                if (square.occupied && !figureSelected){ //empty fal
+            if (target.toString().equals("Square") || target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B' ) {
+                if(target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B'){
+                    Figure newFigure = (Figure) target;
+                    square = (Square) newFigure.getParent();
+                }
+                else if(target.toString().equals("Square")){
+                    square = (Square) target;
+                }
+                
+                if (square.occupied && !figureSelected) { //empty fal
                     selectedX = square.getX();
                     selectedY = square.getY();
                     figureSelected = true;
-                    System.out.println(figureSelected);
 
-                    selectedFigure = (Figure)square.getChildren().get(0);
+                    selectedFigure = (Figure) square.getChildren().get(0);
 
-                } else if (figureSelected){
+                } else if (figureSelected) {
                     int secondX = square.getX();
                     int secondY = square.getY();
-                    move(selectedY, selectedX, secondY, secondX);
+                    if ((!player && !board.getElement(selectedY, selectedX).getColor()) || (player && board.getElement(selectedY, selectedX).getColor())) {
+                        if (!move(selectedY, selectedX, secondY, secondX, selectedFigure, square)) {
+                            System.out.println("You can't do this step");
+                        } else {
+                            player = !player;
+                            board.printBoard();
+                        }
+                    } else if (player && !board.getElement(selectedY, selectedX).getColor()) {
+                        System.out.println("It's black turn now");
+                    } else if (!player && board.getElement(selectedY, selectedX).getColor()) {
+                        System.out.println("It's white turn now");
+                    }
+                    matAndCheck();
+                    if (!player && checkBlack) {
+                        matBlack = true;
+                    }
+                    if (player && checkWhite) {
+                        matWhite = true;
+                    }
+
+                    if (matWhite) {
+                        System.out.println("Black wins");
+                        System.exit(1);
+                    }
+                    if (matBlack) {
+                        System.out.println("White wins");
+                        System.exit(1);
+                    }
+
+                    checkWhite = false;
+                    checkBlack = false;
                     figureSelected = !figureSelected;
-                    System.out.println(figureSelected);
-                    board.printBoard();
                     System.out.println(selectedY + " " + selectedX);
                     System.out.println(secondY + " " + secondX);
-
-                    Square initialSquare = (Square) selectedFigure.getParent();
-                    square.getChildren().add(selectedFigure);
-                    square.occupied = true;
-                    initialSquare.getChildren().removeAll();
-                    initialSquare.occupied = false;
-                    selectedFigure.setFigureX(square.getX());
-                    selectedFigure.setFigureY(square.getY());
                 }
-
-              //  square.getChildren();
-
-            } /*else {
-                Figure newFigure = (Figure) target;
-                Square square = (Square) newFigure.getParent();
-                System.out.println(newFigure.getName());
-                System.out.println(newFigure.getFigureX() + " " + newFigure.getFigureY());
-            }*/
-
+            }
         });
     }
 
-    public boolean move(int x_1, int y_1, int x_2, int y_2) {
+    public void moveFigure(Square square){
+        Square initialSquare = (Square) selectedFigure.getParent();
+        square.getChildren().add(selectedFigure);
+        square.occupied = true;
+        initialSquare.getChildren().removeAll();
+        initialSquare.occupied = false;
+        selectedFigure.setFigureX(square.getX());
+        selectedFigure.setFigureY(square.getY());
+    }
+
+    public void killFigure(Square square){
+        Square initialSquare = (Square) selectedFigure.getParent();
+        square.getChildren().remove(0);
+        square.getChildren().add(selectedFigure);
+        square.occupied = true;
+        initialSquare.getChildren().removeAll();
+        initialSquare.occupied = false;
+        selectedFigure.setFigureY(square.getX());
+        selectedFigure.setFigureY(square.getY());
+    }
+
+    public void doCastling(int x, int kingY, int rookY, int rookY_2){
+        Square squareKing = board.getSquare(kingY, x);
+        moveFigure(squareKing);
+        Square squareRook = board.getSquare(rookY, x);
+        selectedFigure = (Figure) squareRook.getChildren().get(0);
+        squareRook = board.getSquare(rookY_2, x);
+        moveFigure(squareRook);
+    }
+
+    public boolean move(int x_1, int y_1, int x_2, int y_2, Figure selectedFigure, Square square) {
         //рокировка
         if (castling(x_1, y_1, x_2, y_2)) {
             board.printBoard();
@@ -156,26 +166,43 @@ public class ChessGame {
 
         if (takingOnThePassCheck(x_1, y_1, x_2, y_2)) {
             board.setElement(x_2, y_2, board.getElement(x_1, y_1));
+            moveFigure(square);
+            if(player){
+                Square sqKill = board.getSquare( PawnFigure.passY, PawnFigure.passX - 1);
+                System.out.println(sqKill.getChildren().toString());
+                sqKill.getChildren().remove(0);
+            }
+            else {
+                Square sqKill = board.getSquare(PawnFigure.passY, PawnFigure.passX + 1);
+                System.out.println(sqKill.getChildren().toString());
+                sqKill.getChildren().remove(0);
+            }
             initNullCell(x_1, y_1);
             initNullCell(x_1, y_2);
             return true;
         }
 
         // замена пешки
-        if (pawnUpdate(x_1, y_1, x_2, y_2)) {
-            board.getElement(x_2, y_2).setFigureX(x_2);
-            board.getElement(x_2, y_2).setFigureY(y_2);
+        if (pawnUpdateMenu(x_1, y_1, x_2, y_2, square)) {
+            /*board.getElement(x_2, y_2).setFigureX(x_2);
+            board.getElement(x_2, y_2).setFigureY(y_2);*/
             board.printBoard();
-
             return true;
         }
 
         // обычный ход
         if (check(x_1, y_1, x_2, y_2)) {
-            if (board.getElement(x_1, y_1).reChecking(x_1, y_1, x_2, y_2, board)) {
+            if (selectedFigure.reChecking(x_1, y_1, x_2, y_2, board)) {
+                if (!checkForEmptyCell(x_2, y_2)) {
+                    moveFigure(square);
+                } else if (board.getElement(x_2, y_2).getColor() != board.getElement(x_1, y_1).getColor()) {
+                    killFigure(square);
+                }
+
                 board.setElement(x_2, y_2, board.getElement(x_1, y_1));
                 initNullCell(x_1, y_1);
-                //board.printBoard();
+                board.printBoard();
+
                 if (board.getElement(x_2, y_2).getName().equals("KW")) {
                     whiteKingX = x_2;
                     whiteKingY = y_2;
@@ -188,6 +215,10 @@ public class ChessGame {
                 board.getElement(x_2, y_2).setFigureY(y_2);
 
                 board.getElement(x_2, y_2).setHasMoved(true);
+                if(board.getElement(x_2, y_2).getName().charAt(0) != 'P'){
+                    PawnFigure.passX = -1;
+                    PawnFigure.passY = -1;
+                }
                 return true;
             } else {
                 System.out.println("Error\n");
@@ -199,10 +230,24 @@ public class ChessGame {
     public void matAndCheck() {
         if (checkKing(false, this.board, whiteKingX, whiteKingY)) {
             System.out.println("Check for white");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
 
+            alert.setTitle("WARNING");
+            alert.setHeaderText(null);
+            alert.setContentText("Sosi huy, tebe shah, Beliy!");
+
+            alert.showAndWait();
         }
+
         if (checkKing(true, this.board, blackKingX, blackKingY)) {
             System.out.println("Check for black");
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText(null);
+            alert.setContentText("Sosi huy, tebe shah, Black!");
+
+            alert.showAndWait();
         }
 
         if (checkWhite) {
@@ -302,6 +347,7 @@ public class ChessGame {
                     if (distance == 4) {
                         board.setElement(x_1, kingY - 2, board.getElement(kingX, kingY));
                         board.setElement(x_1, rookY + 3, board.getElement(rookX, rookY));
+                        doCastling(x_1, kingY - 2, rookY, rookY + 3);
 
                         if (board.getElement(x_1, kingY - 2).getName().equals("KW")) {
                             whiteKingX = x_1;
@@ -318,9 +364,9 @@ public class ChessGame {
 
                     // короткая рокировка
                     if (distance == 3) {
-
                         board.setElement(x_1, kingY + 2, board.getElement(kingX, kingY));
                         board.setElement(x_1, rookY - 2, board.getElement(rookX, rookY));
+                        doCastling(x_1, kingY + 2,  rookY, rookY - 2);
 
                         if (board.getElement(x_1, kingY + 2).getName().equals("KW")) {
                             whiteKingX = x_1;
@@ -347,58 +393,58 @@ public class ChessGame {
      * 2) Пешка, совершающая взятие, должна находиться на 5-й горизонтали (для нас 4-й) для белых, а на 4-й (для нас 3-й) для черных.
      * 3) стоит пешка и пешка противка совершает двойной ход. только тогда возможно взятие на проходе. */
     public boolean takingOnThePassCheck(int x_1, int y_1, int x_2, int y_2) {
-        WhiteCell wc = new WhiteCell();
-        BlackCell bc = new BlackCell();
         // если атакующая пешка черная
-        if (player) {
-            if (board.getElement(x_1, y_1).getColor() && x_1 == 3) {
-                // если наша черная пешка стоит по 0-й вертикали
-                if (y_1 == 0 && player != board.getElement(x_1, y_1 + 1).getColor() && board.getElement(x_1, y_1 + 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
+        if (board.getElement(x_1, y_1).getName().charAt(0) == 'P') {
+            if (player) {
+                if (board.getElement(x_1, y_1).getColor() && x_1 == 4) {
+                    // если наша черная пешка стоит по 0-й вертикали
+                    if (y_1 == 0 && player != board.getElement(x_1, y_1 + 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
+                        // если наша черная пешка стоит по 7-й вертикали
+                    } else if (y_1 == 7 && player != board.getElement(x_1, y_1 - 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
                     }
-                    // если наша черная пешка стоит по 7-й вертикали
-                } else if (y_1 == 7 && player != board.getElement(x_1, y_1 - 1).getColor() && board.getElement(x_1, y_1 - 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
-                    }
-                }
 
-                // общий случай для черной пешки
-                if (player != board.getElement(x_1, y_1 + 1).getColor() && board.getElement(x_1, y_1 + 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
+                    // общий случай для черной пешки
+                    if (player != board.getElement(x_1, y_1 + 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
+                    }
+                    if (player != board.getElement(x_1, y_1 - 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
                     }
                 }
-                if (player != board.getElement(x_1, y_1 - 1).getColor() && board.getElement(x_1, y_1 - 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
+            } else {
+                if (!board.getElement(x_1, y_1).getColor() && x_1 == 3) {
+                    // если наша белая пешка стоит по 0-й вертикали
+                    if (y_1 == 0 && player != board.getElement(x_1, y_1 + 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
+                        // если наша белая пешка стоит по 7-й вертикали
+                    } else if (y_1 == 7 && player != board.getElement(x_1, y_1 - 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
                     }
-                }
-            }
-        } else {
-            if (!board.getElement(x_1, y_1).getColor() && x_1 == 4) {
-                // если наша черная пешка стоит по 0-й вертикали
-                if (y_1 == 0 && player != board.getElement(x_1, y_1 + 1).getColor() && board.getElement(x_1, y_1 + 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
-                    }
-                    // если наша черная пешка стоит по 7-й вертикали
-                } else if (y_1 == 7 && player != board.getElement(x_1, y_1 - 1).getColor() && board.getElement(x_1, y_1 - 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
-                    }
-                }
 
-                // общий случай для черной пешки
-                if (player != board.getElement(x_1, y_1 + 1).getColor() && board.getElement(x_1, y_1 + 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
+                    // общий случай для белой пешки
+                    if (player != board.getElement(x_1, y_1 + 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
                     }
-                }
-                if (player != board.getElement(x_1, y_1 - 1).getColor() && board.getElement(x_1, y_1 - 1).isDoubleStep()) {
-                    if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
-                        return true;
+                    if (player != board.getElement(x_1, y_1 - 1).getColor() && PawnFigure.passX == x_2 && PawnFigure.passY == y_2) {
+                        if (board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00")) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -467,7 +513,59 @@ public class ChessGame {
                 }
             }
         }
+        return false;
+    }
 
+    public boolean pawnUpdateMenu(int x_1, int y_1, int x_2, int y_2, Square square){
+
+        if(board.getElement(x_1, y_1).getName().charAt(0) == 'P'
+                && (y_1 == y_2 || y_1 - y_2 == 1 || y_1 - y_2 == -1)
+                && ((x_1 == 6 && x_2 == 7) || x_1 == 1 && x_2 == 0)) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog with Custom Actions");
+            alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
+            alert.setContentText("Choose your option.");
+
+            ButtonType buttonTypeQueen = new ButtonType("Queen");
+            ButtonType buttonTypeRook = new ButtonType("Rook");
+            ButtonType buttonTypeHorse = new ButtonType("Horse");
+            ButtonType buttonTypeBishop = new ButtonType("Bishop");
+
+            alert.getButtonTypes().setAll(buttonTypeQueen, buttonTypeRook, buttonTypeHorse, buttonTypeBishop);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            String col;
+            if (player) {
+                col = "B";
+            } else {
+                col = "W";
+            }
+
+            Figure newFigure = null;
+            if (result.get() == buttonTypeQueen) {
+                newFigure = new QueenFigure(y_2, x_2, player, "Q" + col);
+            } else if (result.get() == buttonTypeRook) {
+                newFigure = new RookFigure(y_2, x_2, player, "R" + col);
+            } else if (result.get() == buttonTypeHorse) {
+                newFigure = new HorseFigure(y_2, x_2, player, "H" + col);
+            } else {
+                newFigure = new BishopFigure(y_2, x_2, player, "B" + col);
+            }
+
+            if(checkForEmptyCell(x_2, y_2)){
+                killFigure(square);
+            }else {
+                moveFigure(square);
+            }
+            square.getChildren().remove(0);
+
+            square.getChildren().add(newFigure);
+            board.setElement(x_2, y_2, newFigure);
+            initNullCell(x_1, y_1);
+            System.out.println(board.getSquare(y_1, x_1).getChildren());
+
+            return true;
+        }
         return false;
     }
 
