@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -20,7 +19,7 @@ public class ChessMain extends Application {
     //for urls
     public static final String userName = "booqi";
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         Pane pane = new Pane();
         Image image = new Image("C:\\Users\\" + userName + "\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\mainMenu.png");
         Image iconImage = new Image("C:\\Users\\" + userName + "\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\figures\\images\\HB.png");
@@ -32,7 +31,6 @@ public class ChessMain extends Application {
         Button buttonLoadGame = new Button("Load Last Game");
         pane.getChildren().add(buttonNewGame);
         pane.getChildren().add(buttonLoadGame);
-        Font font = new Font(20);
 
         buttonNewGame.setFont(Font.font("Bold", FontWeight.BOLD, 20));
         buttonLoadGame.setFont(Font.font("Bold", FontWeight.BOLD, 20));
