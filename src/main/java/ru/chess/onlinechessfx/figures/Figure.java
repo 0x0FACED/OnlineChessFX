@@ -47,7 +47,7 @@ public class Figure extends ImageView {
     }
 
     public void setImage(){
-        Image image = new Image("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\figures\\images\\" + this.name + ".png");
+        Image image = new Image("C:\\Users\\" + ChessMain.userName + "\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\figures\\images\\" + this.name + ".png");
         this.setImage(image);
     }
 

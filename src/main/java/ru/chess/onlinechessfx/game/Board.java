@@ -47,7 +47,7 @@ public class Board {
     public void loadSave() throws IOException {
 
         // путь до папки с сохранением у каждого свой
-        FileInputStream fileToLoad = new FileInputStream("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+        FileInputStream fileToLoad = new FileInputStream("C:\\Users\\booqi\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
 
         StringBuilder sb = new StringBuilder();
         int k;

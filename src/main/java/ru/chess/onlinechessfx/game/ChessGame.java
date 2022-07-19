@@ -8,12 +8,10 @@ import ru.chess.onlinechessfx.figures.*;
 import javafx.scene.control.Alert;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
-import java.util.Scanner;
 
 
 //при речекинге королю ставится hasMoved
@@ -39,7 +37,8 @@ public class ChessGame {
     private int blackKingX;
     private int blackKingY;
 
-    public File file = new File("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+    public File file = new File("C:\\Users\\booqi\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+
     public ChessGame(GridPane board, boolean isLoad) throws IOException {
         this.board = new Board(board, isLoad);
         if (!isLoad){
@@ -487,9 +486,9 @@ public class ChessGame {
     // замена пешки
 
 
-    public boolean pawnUpdateMenu(int x_1, int y_1, int x_2, int y_2, Square square){
+    public boolean pawnUpdateMenu(int x_1, int y_1, int x_2, int y_2, Square square) {
 
-        if(board.getElement(x_1, y_1).getName().charAt(0) == 'P'
+        if (board.getElement(x_1, y_1).getName().charAt(0) == 'P'
                 && (y_1 == y_2 || y_1 - y_2 == 1 || y_1 - y_2 == -1)
                 && ((x_1 == 6 && x_2 == 7) || x_1 == 1 && x_2 == 0)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

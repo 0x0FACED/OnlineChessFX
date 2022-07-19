@@ -14,7 +14,8 @@ public class Controller {
     public void initialize() throws IOException {
 
         // второй аргумент - нужна ли загрузка сохранения
-        ChessGame game = new ChessGame(chessBoard, true);
+        ChessGame game = new ChessGame(chessBoard, false);
+
     }
 }
 
