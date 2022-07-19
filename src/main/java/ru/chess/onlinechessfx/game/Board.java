@@ -6,11 +6,14 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    //Object[][] body;
     private final Figure[][] body;
 
     private GridPane board;
@@ -25,13 +28,132 @@ public class Board {
         this.body = new Figure[ChessGame.MAX_SIZE][ChessGame.MAX_SIZE];
     }
 
-    public Board(GridPane board) {
+    public Board(GridPane board, boolean isLoad) throws IOException {
         this.body = new Figure[ChessGame.MAX_SIZE][ChessGame.MAX_SIZE];
         this.board = board;
-        makeGraphicBoard(board);
+
         fillBoard();
-        createFigures();
-        printBoard();
+        if (!isLoad) {
+            makeGraphicBoard(board);
+            createFigures();
+            addFigures();
+            printBoard();
+        } else {
+            makeGraphicBoard(board);
+            loadSave();
+        }
+    }
+
+    public void loadSave() throws IOException {
+
+        // путь до папки с сохранением у каждого свой
+        FileInputStream fileToLoad = new FileInputStream("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+
+        StringBuilder sb = new StringBuilder();
+        int k;
+        while ((k = fileToLoad.read()) != -1) {
+            sb.append((char) k);
+        }
+
+        // здесь мы уже из стринг билдера загрузили наше сохранение
+        String s = String.valueOf(sb);
+        // присвоили строке и создали массив строк, где regex - пробел
+        String[] split = s.split(" ");
+
+        // так как файл с сохранением хранит в себе расстановку фигру после последнего хода и последнего игрока,
+        // то мы его загружаем, чтобы не ходил всегда белый
+        ChessGame.player = split[64].equals("\ntrue");
+
+        // переменные, необходимые для прохода по сохранению и созданию с расстановкой фигур на доске
+        int x = 1;
+        int counter = 0;
+        int counterChar = 0;
+
+        // основной цикл, в ходе которого мы расставим все фигуры на доску
+        for (int i = 0; i < squares.size(); ++i) {
+            Square square = squares.get(counter);
+            if (split[i].charAt(counterChar) == '\n') {
+                counterChar = 1;
+            } else {
+                counterChar = 0;
+            }
+
+            if (split[i].charAt(counterChar) == 'R') {
+                if (split[i].charAt(counterChar + 1) == 'W') {
+                    Figure figure = new RookFigure(square.getX(), square.getY(), false, "RW");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                } else {
+                    Figure figure = new RookFigure(square.getX(), square.getY(), true, "RB");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                }
+            } else if (split[i].charAt(counterChar) == 'H') {
+                if (split[i].charAt(counterChar + 1) == 'W') {
+                    Figure figure = new HorseFigure(square.getX(), square.getY(), false, "HW");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                } else {
+                    Figure figure = new HorseFigure(square.getX(), square.getY(), true, "HB");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                }
+            } else if (split[i].charAt(counterChar) == 'B') {
+                if (split[i].charAt(counterChar + 1) == 'W') {
+                    Figure figure = new BishopFigure(square.getX(), square.getY(), false, "BW");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                } else {
+                    Figure figure = new BishopFigure(square.getX(), square.getY(), true, "BB");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                }
+            } else if (split[i].charAt(counterChar) == 'Q') {
+                if (split[i].charAt(counterChar + 1) == 'W') {
+                    Figure figure = new QueenFigure(square.getX(), square.getY(), false, "QW");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                } else {
+                    Figure figure = new QueenFigure(square.getX(), square.getY(), true, "QB");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                }
+            } else if (split[i].charAt(counterChar) == 'K') {
+                if (split[i].charAt(counterChar + 1) == 'W') {
+                    Figure figure = new KingFigure(square.getX(), square.getY(), false, "KW");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                } else {
+                    Figure figure = new KingFigure(square.getX(), square.getY(), true, "KB");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                }
+            } else if (split[i].charAt(counterChar) == 'P') {
+                if (split[i].charAt(counterChar + 1) == 'W') {
+                    Figure figure = new PawnFigure(square.getX(), square.getY(), false, "PW");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                } else {
+                    Figure figure = new PawnFigure(square.getX(), square.getY(), true, "PB");
+                    addFigure(square, figure);
+                    body[square.getY()][square.getX()] = figure;
+                }
+            }
+
+            // мое личное изобретение. крч объясняю.
+            // так как в нашем проекте довольно странно определены координаты (квадраты, arraylist, figure[][]), то возникают траблы.
+            // конечно, это фиксится, если покопаться, но придется половину кода переписывать, что может и не получиться.
+            // так что есть варик забить и делать после каждой фигуры counter += 8, ибо у квадратов порядок по столбцам (сверху вниз)
+            // а у матрицы, на которой вся логика построена - слева направо (как и в обычной матрице), то есть нам в square надо
+            // перешагивать на 8 клеток вправо постоянно, а когда дойдем до конца (56+ индекса), то просто присвоим значение, которое на 1
+            // больше, то есть по сути просто сделаем переход на новую строку. иначе говоря, таким образом я имитирую проход как в матрице по arraylist'у.
+            // костыль, да, но переделывать все - еще больше костылей родить.
+            counter += 8;
+            if (counter >= 64) {
+                counter = x;
+                ++x;
+            }
+        }
     }
 
     public void makeGraphicBoard(GridPane board) {
@@ -48,7 +170,6 @@ public class Board {
                 squares.add(square);
             }
         }
-        addFigures();
     }
 
     private void setTheme(Square square, int i, int j) {

@@ -4,15 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import ru.chess.onlinechessfx.game.ChessGame;
 
+import java.io.IOException;
+
 public class Controller {
 
     @FXML
     GridPane chessBoard;
 
-    public void initialize(){
+    public void initialize() throws IOException {
 
-        ChessGame game = new ChessGame(chessBoard);
-
+        // второй аргумент - нужна ли загрузка сохранения
+        ChessGame game = new ChessGame(chessBoard, true);
     }
 }
 

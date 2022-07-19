@@ -7,6 +7,11 @@ import ru.chess.onlinechessfx.Square;
 import ru.chess.onlinechessfx.figures.*;
 import javafx.scene.control.Alert;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -21,7 +26,7 @@ public class ChessGame {
 
     public static final int MAX_SIZE = 8;
     private final Board board;
-    private boolean player;
+    public static boolean player;
     private boolean checkWhite;
     private boolean checkBlack;
 
@@ -34,13 +39,12 @@ public class ChessGame {
     private int blackKingX;
     private int blackKingY;
 
-    private int takingOnPassX;
-    private int takingOnPassY;
-
-
-    public ChessGame(GridPane board) {
-        this.board = new Board(board);
-        this.player = false;
+    public File file = new File("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+    public ChessGame(GridPane board, boolean isLoad) throws IOException {
+        this.board = new Board(board, isLoad);
+        if (!isLoad){
+            player = false;
+        }
         whiteKingX = 7;
         whiteKingY = 4;
 
@@ -55,20 +59,17 @@ public class ChessGame {
     }
 
     private void addEventHandlers(GridPane chessBoard) {
-        System.out.println("White Step");
+        if (!player) {
+            System.out.println("White step");
+        }
+        if (player) {
+            System.out.println("Black step");
+        }
         chessBoard.setOnMouseClicked(event -> {
             EventTarget target = event.getTarget();
 
-            if (!player) {
-                System.out.println("White step");
-            }
-            if (player) {
-                System.out.println("Black step");
-            }
-
             Square square = null;
 
-            // Clicked on square
             if (target.toString().equals("Square") || target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B' ) {
                 if(target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B'){
                     Figure newFigure = (Figure) target;
@@ -84,6 +85,10 @@ public class ChessGame {
                     figureSelected = true;
 
                     selectedFigure = (Figure) square.getChildren().get(0);
+                    System.out.println("You select: " + selectedFigure.toString());
+                    System.out.println("Coordinates of selected figure: ");
+                    System.out.println("X: " + selectedFigure.getFigureY());
+                    System.out.println("Y: " + selectedFigure.getFigureX());
 
                 } else if (figureSelected) {
                     int secondX = square.getX();
@@ -93,7 +98,6 @@ public class ChessGame {
                             System.out.println("You can't do this step");
                         } else {
                             player = !player;
-                            board.printBoard();
                         }
                     } else if (player && !board.getElement(selectedY, selectedX).getColor()) {
                         System.out.println("It's black turn now");
@@ -110,21 +114,48 @@ public class ChessGame {
 
                     if (matWhite) {
                         System.out.println("Black wins");
-                        System.exit(1);
+                        System.exit(0);
                     }
                     if (matBlack) {
                         System.out.println("White wins");
-                        System.exit(1);
+                        System.exit(0);
                     }
 
                     checkWhite = false;
                     checkBlack = false;
                     figureSelected = !figureSelected;
-                    System.out.println(selectedY + " " + selectedX);
-                    System.out.println(secondY + " " + secondX);
+
+                    if (!player) {
+                        System.out.println("White step");
+                    }
+                    if (player) {
+                        System.out.println("Black step");
+                    }
+
+                    try {
+                        FileOutputStream fileToSave = new FileOutputStream(file);
+                        String data = makeSave();
+                        fileToSave.write(data.getBytes(StandardCharsets.UTF_8));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });
+    }
+
+    public String makeSave(){
+        StringBuilder str = new StringBuilder();
+        for (int x = 0; x < ChessGame.MAX_SIZE; x++) {
+            for (int y = 0; y < ChessGame.MAX_SIZE; y++) {
+                str.append(board.getBody()[x][y].toString());
+                str.append(" ");
+            }
+
+            str.append("\n");
+        }
+        str.append(player);
+        return String.valueOf(str);
     }
 
     public void moveFigure(Square square){
@@ -139,6 +170,7 @@ public class ChessGame {
 
     public void killFigure(Square square){
         Square initialSquare = (Square) selectedFigure.getParent();
+        System.out.println("You killed: " + square.getChildren());
         square.getChildren().remove(0);
         square.getChildren().add(selectedFigure);
         square.occupied = true;
@@ -168,7 +200,7 @@ public class ChessGame {
             board.setElement(x_2, y_2, board.getElement(x_1, y_1));
             moveFigure(square);
             if(player){
-                Square sqKill = board.getSquare( PawnFigure.passY, PawnFigure.passX - 1);
+                Square sqKill = board.getSquare(PawnFigure.passY, PawnFigure.passX - 1);
                 System.out.println(sqKill.getChildren().toString());
                 sqKill.getChildren().remove(0);
             }
@@ -234,7 +266,7 @@ public class ChessGame {
 
             alert.setTitle("WARNING");
             alert.setHeaderText(null);
-            alert.setContentText("Sosi huy, tebe shah, Beliy!");
+            alert.setContentText("CHECK FOR WHITE");
 
             alert.showAndWait();
         }
@@ -245,7 +277,7 @@ public class ChessGame {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("WARNING");
             alert.setHeaderText(null);
-            alert.setContentText("Sosi huy, tebe shah, Black!");
+            alert.setContentText("CHECK FOR BLACK");
 
             alert.showAndWait();
         }
@@ -453,68 +485,7 @@ public class ChessGame {
     }
 
     // замена пешки
-    public boolean pawnUpdate(int x_1, int y_1, int x_2, int y_2) {
-        if (!check(x_1, y_1, x_2, y_2)) {
-            return false;
-        }
 
-        //white pawn
-        if ((board.getElement(x_1, y_1).getName().equals("PW") && x_1 == 6 && x_2 == 7 && (y_1 == y_2 || y_1 - y_2 == 1 || y_1 - y_2 == -1)) || (board.getElement(x_1, y_1).getName().equals("PB") && x_1 == 1 && x_2 == 0 && (y_1 == y_2 || y_1 - y_2 == 1 || y_1 - y_2 == -1))) {
-            boolean localColor = board.getElement(x_1, y_1).getColor();
-            while (true) {
-                System.out.println("Select the shape number:");
-                System.out.println("1 - Queen");
-                System.out.println("2 - Horse");
-                System.out.println("3 - Rook");
-                System.out.println("4 - Bishop");
-                Scanner sc = new Scanner(System.in);
-                int number = sc.nextInt();
-                initNullCell(x_1, y_1);
-                if (number == 1) {
-                    if (!localColor) {
-                        QueenFigure newQueen = new QueenFigure(x_2, y_2, localColor, "QW");
-                        board.setElement(x_2, y_2, newQueen);
-                    } else {
-                        QueenFigure newQueen = new QueenFigure(x_2, y_2, localColor, "QB");
-                        board.setElement(x_2, y_2, newQueen);
-                    }
-                    return true;
-                } else if (number == 2) {
-                    if (!localColor) {
-                        HorseFigure newHorse = new HorseFigure(x_2, y_2, localColor, "HW");
-                        board.setElement(x_2, y_2, newHorse);
-                    } else {
-                        HorseFigure newHorse = new HorseFigure(x_2, y_2, localColor, "HB");
-                        board.setElement(x_2, y_2, newHorse);
-                    }
-                    return true;
-                } else if (number == 3) {
-                    if (!localColor) {
-                        RookFigure newRook = new RookFigure(x_2, y_2, localColor, "RW");
-                        board.setElement(x_2, y_2, newRook);
-                    }
-                    if (localColor) {
-                        RookFigure newRook = new RookFigure(x_2, y_2, localColor, "RB");
-                        board.setElement(x_2, y_2, newRook);
-                    }
-                    return true;
-                } else if (number == 4) {
-                    if (!localColor) {
-                        BishopFigure newBishop = new BishopFigure(x_2, y_2, localColor, "BW");
-                        board.setElement(x_2, y_2, newBishop);
-                    }
-                    if (localColor) {
-                        BishopFigure newBishop = new BishopFigure(x_2, y_2, localColor, "BB");
-                        board.setElement(x_2, y_2, newBishop);
-                    }
-                    return true;
-                } else {
-                    System.out.println("Enter number of the shape");
-                }
-            }
-        }
-        return false;
-    }
 
     public boolean pawnUpdateMenu(int x_1, int y_1, int x_2, int y_2, Square square){
 
@@ -522,9 +493,9 @@ public class ChessGame {
                 && (y_1 == y_2 || y_1 - y_2 == 1 || y_1 - y_2 == -1)
                 && ((x_1 == 6 && x_2 == 7) || x_1 == 1 && x_2 == 0)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog with Custom Actions");
-            alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
-            alert.setContentText("Choose your option.");
+            alert.setTitle("Pawn Update");
+            alert.setHeaderText(null);
+            alert.setContentText("Choose new figure");
 
             ButtonType buttonTypeQueen = new ButtonType("Queen");
             ButtonType buttonTypeRook = new ButtonType("Rook");
