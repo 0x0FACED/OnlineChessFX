@@ -37,7 +37,7 @@ public class ChessGame {
     private int blackKingX;
     private int blackKingY;
 
-    public File file = new File("C:\\Users\\booqi\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+    public File file = new File("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
 
     public ChessGame(GridPane board, boolean isLoad) throws IOException {
         this.board = new Board(board, isLoad);
