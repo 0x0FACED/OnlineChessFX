@@ -8,13 +8,10 @@ import ru.chess.onlinechessfx.figures.*;
 import javafx.scene.control.Alert;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
-import java.util.Scanner;
-
 
 //при речекинге королю ставится hasMoved
 public class ChessGame {
