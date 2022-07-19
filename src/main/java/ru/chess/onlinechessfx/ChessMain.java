@@ -17,7 +17,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ChessMain extends Application {
-
+    //for urls
+    public static final String userName = "booqi";
     @Override
     public void start(Stage primaryStage) throws Exception{
         Pane pane = new Pane();

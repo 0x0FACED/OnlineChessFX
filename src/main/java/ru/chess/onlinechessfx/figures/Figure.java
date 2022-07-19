@@ -2,6 +2,8 @@ package ru.chess.onlinechessfx.figures;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import ru.chess.onlinechessfx.*;
 import ru.chess.onlinechessfx.game.Board;
 
 public class Figure extends ImageView {
