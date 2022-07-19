@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
+
 //при речекинге королю ставится hasMoved
 public class ChessGame {
 
@@ -36,10 +37,11 @@ public class ChessGame {
     private int blackKingX;
     private int blackKingY;
 
-    public File file = new File("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+    public File file = new File("C:\\Users\\booqi\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\saves\\save.txt");
+
     public ChessGame(GridPane board, boolean isLoad) throws IOException {
         this.board = new Board(board, isLoad);
-        if (!isLoad){
+        if (!isLoad) {
             player = false;
         }
         whiteKingX = 7;
@@ -67,15 +69,14 @@ public class ChessGame {
 
             Square square = null;
 
-            if (target.toString().equals("Square") || target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B' ) {
-                if(target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B'){
+            if (target.toString().equals("Square") || target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B') {
+                if (target.toString().charAt(1) == 'W' || target.toString().charAt(1) == 'B') {
                     Figure newFigure = (Figure) target;
                     square = (Square) newFigure.getParent();
-                }
-                else if(target.toString().equals("Square")){
+                } else if (target.toString().equals("Square")) {
                     square = (Square) target;
                 }
-                
+
                 if (square.occupied && !figureSelected) { //empty fal
                     selectedX = square.getX();
                     selectedY = square.getY();
@@ -141,7 +142,7 @@ public class ChessGame {
         });
     }
 
-    public String makeSave(){
+    public String makeSave() {
         StringBuilder str = new StringBuilder();
         for (int x = 0; x < ChessGame.MAX_SIZE; x++) {
             for (int y = 0; y < ChessGame.MAX_SIZE; y++) {
@@ -155,7 +156,7 @@ public class ChessGame {
         return String.valueOf(str);
     }
 
-    public void moveFigure(Square square){
+    public void moveFigure(Square square) {
         Square initialSquare = (Square) selectedFigure.getParent();
         square.getChildren().add(selectedFigure);
         square.occupied = true;
@@ -165,7 +166,7 @@ public class ChessGame {
         selectedFigure.setFigureY(square.getY());
     }
 
-    public void killFigure(Square square){
+    public void killFigure(Square square) {
         Square initialSquare = (Square) selectedFigure.getParent();
         System.out.println("You killed: " + square.getChildren());
         square.getChildren().remove(0);
@@ -177,7 +178,7 @@ public class ChessGame {
         selectedFigure.setFigureY(square.getY());
     }
 
-    public void doCastling(int x, int kingY, int rookY, int rookY_2){
+    public void doCastling(int x, int kingY, int rookY, int rookY_2) {
         Square squareKing = board.getSquare(kingY, x);
         moveFigure(squareKing);
         Square squareRook = board.getSquare(rookY, x);
@@ -196,12 +197,11 @@ public class ChessGame {
         if (takingOnThePassCheck(x_1, y_1, x_2, y_2)) {
             board.setElement(x_2, y_2, board.getElement(x_1, y_1));
             moveFigure(square);
-            if(player){
+            if (player) {
                 Square sqKill = board.getSquare(PawnFigure.passY, PawnFigure.passX - 1);
                 System.out.println(sqKill.getChildren().toString());
                 sqKill.getChildren().remove(0);
-            }
-            else {
+            } else {
                 Square sqKill = board.getSquare(PawnFigure.passY, PawnFigure.passX + 1);
                 System.out.println(sqKill.getChildren().toString());
                 sqKill.getChildren().remove(0);
@@ -244,7 +244,7 @@ public class ChessGame {
                 board.getElement(x_2, y_2).setFigureY(y_2);
 
                 board.getElement(x_2, y_2).setHasMoved(true);
-                if(board.getElement(x_2, y_2).getName().charAt(0) != 'P'){
+                if (board.getElement(x_2, y_2).getName().charAt(0) != 'P') {
                     PawnFigure.passX = -1;
                     PawnFigure.passY = -1;
                 }
@@ -395,7 +395,7 @@ public class ChessGame {
                     if (distance == 3) {
                         board.setElement(x_1, kingY + 2, board.getElement(kingX, kingY));
                         board.setElement(x_1, rookY - 2, board.getElement(rookX, rookY));
-                        doCastling(x_1, kingY + 2,  rookY, rookY - 2);
+                        doCastling(x_1, kingY + 2, rookY, rookY - 2);
 
                         if (board.getElement(x_1, kingY + 2).getName().equals("KW")) {
                             whiteKingX = x_1;
@@ -484,58 +484,62 @@ public class ChessGame {
     // замена пешки
 
 
-    public boolean pawnUpdateMenu(int x_1, int y_1, int x_2, int y_2, Square square){
+    public boolean pawnUpdateMenu(int x_1, int y_1, int x_2, int y_2, Square square) {
 
-        if(board.getElement(x_1, y_1).getName().charAt(0) == 'P'
+        if (board.getElement(x_1, y_1).getName().charAt(0) == 'P'
                 && (y_1 == y_2 || y_1 - y_2 == 1 || y_1 - y_2 == -1)
                 && ((x_1 == 6 && x_2 == 7) || x_1 == 1 && x_2 == 0)) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Pawn Update");
-            alert.setHeaderText(null);
-            alert.setContentText("Choose new figure");
+            if (board.getElement(x_1, y_1).reChecking(x_1, y_1, x_2, y_2, board) && check(x_1, y_1, x_2, y_2)) {
 
-            ButtonType buttonTypeQueen = new ButtonType("Queen");
-            ButtonType buttonTypeRook = new ButtonType("Rook");
-            ButtonType buttonTypeHorse = new ButtonType("Horse");
-            ButtonType buttonTypeBishop = new ButtonType("Bishop");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Pawn Update");
+                alert.setHeaderText(null);
+                alert.setContentText("Choose new figure");
 
-            alert.getButtonTypes().setAll(buttonTypeQueen, buttonTypeRook, buttonTypeHorse, buttonTypeBishop);
+                ButtonType buttonTypeQueen = new ButtonType("Queen");
+                ButtonType buttonTypeRook = new ButtonType("Rook");
+                ButtonType buttonTypeHorse = new ButtonType("Horse");
+                ButtonType buttonTypeBishop = new ButtonType("Bishop");
 
-            Optional<ButtonType> result = alert.showAndWait();
-            String col;
-            if (player) {
-                col = "B";
-            } else {
-                col = "W";
+                alert.getButtonTypes().setAll(buttonTypeQueen, buttonTypeRook, buttonTypeHorse, buttonTypeBishop);
+
+                Optional<ButtonType> result = alert.showAndWait();
+                String col;
+                if (player) {
+                    col = "B";
+                } else {
+                    col = "W";
+                }
+
+                Figure newFigure = null;
+                if (result.get() == buttonTypeQueen) {
+                    newFigure = new QueenFigure(y_2, x_2, player, "Q" + col);
+                } else if (result.get() == buttonTypeRook) {
+                    newFigure = new RookFigure(y_2, x_2, player, "R" + col);
+                } else if (result.get() == buttonTypeHorse) {
+                    newFigure = new HorseFigure(y_2, x_2, player, "H" + col);
+                } else {
+                    newFigure = new BishopFigure(y_2, x_2, player, "B" + col);
+                }
+
+                if (checkForEmptyCell(x_2, y_2)) {
+                    killFigure(square);
+                } else {
+                    moveFigure(square);
+                }
+                square.getChildren().remove(0);
+
+                square.getChildren().add(newFigure);
+                board.setElement(x_2, y_2, newFigure);
+                initNullCell(x_1, y_1);
+                System.out.println(board.getSquare(y_1, x_1).getChildren());
+
+                return true;
             }
-
-            Figure newFigure = null;
-            if (result.get() == buttonTypeQueen) {
-                newFigure = new QueenFigure(y_2, x_2, player, "Q" + col);
-            } else if (result.get() == buttonTypeRook) {
-                newFigure = new RookFigure(y_2, x_2, player, "R" + col);
-            } else if (result.get() == buttonTypeHorse) {
-                newFigure = new HorseFigure(y_2, x_2, player, "H" + col);
-            } else {
-                newFigure = new BishopFigure(y_2, x_2, player, "B" + col);
-            }
-
-            if(checkForEmptyCell(x_2, y_2)){
-                killFigure(square);
-            }else {
-                moveFigure(square);
-            }
-            square.getChildren().remove(0);
-
-            square.getChildren().add(newFigure);
-            board.setElement(x_2, y_2, newFigure);
-            initNullCell(x_1, y_1);
-            System.out.println(board.getSquare(y_1, x_1).getChildren());
-
-            return true;
         }
         return false;
     }
+
 
     public boolean checkKing(boolean color, Board board, int kX, int kY) {
 

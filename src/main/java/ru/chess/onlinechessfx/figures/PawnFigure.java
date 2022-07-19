@@ -20,11 +20,13 @@ public class PawnFigure extends Figure {
         if (x_1 - x_2 == 2 && !(this.getColor()) && y_1 == y_2 && !isHasMoved()) {
             if (board.getElement(x_1 - 1, y_2).getName().equals("11") || board.getElement(x_1 - 1, y_2).getName().equals("00")) {
                 if ((board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00"))) {
-                    setHasMoved(true);
-                    setDoubleStep(true);
-                    passX = x_2 + 1;
-                    passY = y_2;
-                    return true;
+                    if(x_1 == 6) {
+                        setHasMoved(true);
+                        setDoubleStep(true);
+                        passX = x_2 + 1;
+                        passY = y_2;
+                        return true;
+                    }
                 }
             }
         }
@@ -32,11 +34,13 @@ public class PawnFigure extends Figure {
         if (x_2 - x_1 == 2 && (this.getColor()) && y_1 == y_2 && !isHasMoved()) {
             if (board.getElement(x_1 + 1, y_1).getName().equals("11") || board.getElement(x_1 + 1, y_1).getName().equals("00")) {
                 if ((board.getElement(x_2, y_2).getName().equals("11") || board.getElement(x_2, y_2).getName().equals("00"))) {
-                    setHasMoved(true);
-                    setDoubleStep(true);
-                    passX = x_2 - 1;
-                    passY = y_2;
-                    return true;
+                    if(x_1 == 1) {
+                        setHasMoved(true);
+                        setDoubleStep(true);
+                        passX = x_2 - 1;
+                        passY = y_2;
+                        return true;
+                    }
                 }
             }
         }

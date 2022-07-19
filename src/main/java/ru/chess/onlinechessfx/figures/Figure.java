@@ -2,6 +2,8 @@ package ru.chess.onlinechessfx.figures;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import ru.chess.onlinechessfx.*;
 import ru.chess.onlinechessfx.game.Board;
 
 public class Figure extends ImageView {
@@ -47,7 +49,7 @@ public class Figure extends ImageView {
     }
 
     public void setImage(){
-        Image image = new Image("C:\\Users\\lexaf\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\figures\\images\\" + this.name + ".png");
+        Image image = new Image("C:\\Users\\" + ChessMain.userName + "\\IdeaProjects\\OnlineChessFX\\src\\main\\java\\ru\\chess\\onlinechessfx\\figures\\images\\" + this.name + ".png");
         this.setImage(image);
     }
 
