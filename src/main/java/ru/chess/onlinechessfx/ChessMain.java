@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class ChessMain extends Application {
     //for urls
-    public static final String userName = "lexaf";
+    public static final String userName = "vovai";
     @Override
     public void start(Stage primaryStage) {
         Pane pane = new Pane();
